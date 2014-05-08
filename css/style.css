@@ -1,0 +1,90 @@
+#header{
+	width: 100%;
+	background-color: #0278C8;
+	padding-top: 1%;
+	padding-bottom: 2%;
+	border-bottom: 2px solid #000;
+}
+.logo{
+	float:left;
+}
+.search{
+	float:right;
+	margin-top:  3%;;
+}
+.container{
+	width: 980px;
+	margin: 0px auto;
+	position: relative;
+}
+#content{
+	margin-top: 2%;
+}
+#content .leerjaar1{
+	float:left; 
+	width: 48%;
+	background-color: red;
+	height: 150px;	
+}
+#content .leerjaar2{
+	float:right;
+	width:48%;
+	background-color: orange;
+	height: 150px;
+}
+#content .leerjaar3{
+	margin-top: 1%;
+	float:left;
+	width:48%;
+	background-color: blue;
+	height: 150px;
+}
+
+#content .leerjaar4{
+	margin-top: 1%;
+	float:right;
+	width:48%;
+	background-color: purple;
+	height: 150px;
+}
+/** FOOTER **/
+#footer{
+	margin-top: 5%;
+	background-color: #000;
+	padding: 10px 0;
+	color: #fff;
+	text-align: center;
+	position:fixed;
+	bottom:0;
+	width: 100%;
+}
+#footer a{
+	color: #fff;
+	text-decoration: none;
+}
+#footer a:hover{
+	color: #fff;
+}
+#footer .copyright{
+	float:left;
+}
+#footer .terms{
+	float:right;
+}
+@media (max-width:400px) {
+	.search{
+		clear:both;
+		float:none;
+		padding-top: 4%;
+	}
+	.container{
+		width: 100%;
+		margin: 0px auto;
+		position: relative;
+	}
+	#content .leerjaar1, #content .leerjaar2, #content .leerjaar3, #content .leerjaar4{
+	clear:both;
+	width: 100%;
+	margin-top: 4%;
+	}
+}
