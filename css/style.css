@@ -10,7 +10,8 @@
 }
 .search{
 	float:right;
-	margin-top:  3%;;
+	margin-top:  3%;
+	width: 30%;
 }
 .container{
 	width: 980px;
@@ -31,14 +32,14 @@
 	height: 150px;
 }
 #content .leerjaar3{
-	margin-top: 1%;
+	margin-top: 4%;
 	float:left;
 	width:48%;
 	height: 150px;
 }
 
 #content .leerjaar4{
-	margin-top: 1%;
+	margin-top: 4%;
 	float:right;
 	width:48%;
 	height: 150px;
@@ -50,6 +51,16 @@
 	background-color: red;
 	border-top-right-radius: 7px;
 	border-top-left-radius: 7px;
+	text-transform: uppercase;
+}
+#content .onderwerp{
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+#content .onderwerp .content{
+	height: 100%;
+	
 }
 #content .red{
 	background-color: red;
@@ -60,8 +71,8 @@
 #content .green{
 	background-color: green;
 }
-#content .yellow{
-	background-color: yellow;
+#content .blue{
+	background-color: #00FFFF;
 }
 #content .header p{
 	margin-left: 10px;
@@ -69,7 +80,7 @@
 }
 #content .content{
 	background-color: #fff;
-	height: 100px;
+	height: 120px;
 	border: 1px solid #ddd;
 	border-bottom-right-radius: 7px;
 	border-bottom-left-radius: 7px;
@@ -81,14 +92,36 @@
 #content .content a{
 	color: #000;	
 }
-#content .content a:hover{
+#content .red a:hover{
 	text-decoration: none;
-	color: blue;
+	color: red;
 	font-weight: bold;
+}
+#content .orange a:hover{
+	text-decoration: none;
+	color: orange;
+	font-weight: bold;
+}
+#content .blue a:hover{
+	text-decoration: none;
+	color: #00FFFF;
+	font-weight: bold;
+}
+#content .green a:hover{
+	text-decoration: none;
+	color: green;
+	font-weight: bold;
+}
+#content .attached_file{
+	position:fixxed;
+}
+#content .attached_file a{
+	margin-left: 5px;
+	vertical-align:middle
 }
 #content .contact {
 	clear:both;
-	padding-top: 0.1%;
+	padding-top: 2%;
 	text-align: center;
 }
 #content .contact h2{
@@ -101,7 +134,7 @@
 #footer{
 	margin-top: 5%;
 	background-color: #000;
-	padding: 10px 0;
+	padding: 7px 0;
 	color: #fff;
 	text-align: center;
 	position:fixed;
@@ -129,6 +162,7 @@
 	.search{
 		clear:both;
 		float:none;
+		width: 100%;
 		padding-top: 4%;
 	}
 	.container{
@@ -139,9 +173,10 @@
 	#content .leerjaar1, #content .leerjaar2, #content .leerjaar3, #content .leerjaar4{
 	clear:both;
 	width: 100%;
-	margin-top: 4%;
+	margin-top: 10%;
 	}
 	#content .contact{
+		padding-top: 4%;
 		margin-bottom: 20%;
 	}
 }
