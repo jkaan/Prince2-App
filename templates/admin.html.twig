@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="/assets/scss/admin.css"/>
+{% endblock stylesheets %}
+
+{% block body %}
+    <div class="documents">
+        <div class="redHeader"><p>Uploaden documenten</p></div>
+        <div class="content">
+            <h5>Geuploade documenten</h5>
+            <p>
+                <a class="btn btn-default" href="{{ path('uploadDocument') }}">Upload document</a>
+            </p>
+        </div>
+    </div>
+    <div class="clips">
+        <div class="greenHeader"><p>Uploaden filmpje</p></div>
+        <div class="content">
+            <h5>Geuploade filmpjes</h5>
+            <p>
+                <a class="btn btn-default" href="{{ path('uploadClip') }}">Upload filmpje</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock body %}

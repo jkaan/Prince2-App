@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Upload een filmpje hier</h1>
+    <form action="{{ path('uploadClip') }}" method="POST" role="form">
+        <div class="form-group">
+            <label for="clipName">Naam filmpje</label>
+            <input class="form-control" id="clipName" name="clipName" type="text"/>
+        </div>
+        <div class="form-group">
+            <label for="clip">Te uploaden filmpje</label>
+            <input class="form-control" id="clip" name="clip" type="file"/>
+        </div>
+        <button class="btn btn-default" type="submit">Save</button>
+    </form>
+{% endblock body %}

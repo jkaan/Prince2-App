@@ -1,0 +1,47 @@
+@mixin content-block($floatValue)
+{
+  float: $floatValue;
+  width: 48%;
+  height: 150px;
+
+  .content {
+    padding: 5px;
+    background-color: #fff;
+    height: 100px;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+  }
+
+}
+
+@mixin content-header($backgroundColor)
+{
+  font-size: 16px;
+  color: #000;
+  padding: 5px;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  background-color: $backgroundColor;
+  p {
+    margin-left: 10px;
+    margin-top: 5px;
+  }
+}
+
+.documents {
+  @include content-block(left);
+}
+
+.clips {
+  @include content-block(right);
+}
+
+.redHeader {
+  @include content-header(red);
+}
+
+.greenHeader {
+  @include content-header(green);
+}
+
