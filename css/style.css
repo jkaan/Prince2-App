@@ -18,8 +18,12 @@
 	margin: 0px auto;
 	position: relative;
 }
+#breadcrumbs{
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
 #content{
-	margin-top: 2%;
+	margin-top: 0.5%;
 }
 #content .leerjaar1{
 	float:left; 
@@ -84,6 +88,28 @@
 	border: 1px solid #ddd;
 	border-bottom-right-radius: 7px;
 	border-bottom-left-radius: 7px;
+	width: 100%;
+	overflow: hidden;
+	position:relative;
+	padding-bottom: 20px;
+}
+#content .onderwerp .onderwerpen{
+	text-align: center;
+}	
+#content .subject{
+	border-bottom-right-radius: 7px;
+	border-bottom-left-radius: 7px;
+	width: 30%;
+	margin-right: 10px;
+	margin-top: 10px;
+	text-align:left;
+	display:inline-block;
+}
+#content .subject.last{
+	margin-right: 0px;
+}
+#content .content .row{
+	margin-bottom: 10px;
 }
 #content .content p{
 	margin-left: 10px;
@@ -170,6 +196,9 @@
 		margin: 0px auto;
 		position: relative;
 	}
+	#content{
+		margin-top: -20px;
+	}
 	#content .leerjaar1, #content .leerjaar2, #content .leerjaar3, #content .leerjaar4{
 	clear:both;
 	width: 100%;
@@ -178,5 +207,10 @@
 	#content .contact{
 		padding-top: 4%;
 		margin-bottom: 20%;
+	}
+	#content .onderwerp .subject{
+		width: 80%;
+		margin-left: 10%;
+		margin-right: 10%;
 	}
 }
