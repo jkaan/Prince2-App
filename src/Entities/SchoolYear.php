@@ -11,13 +11,13 @@ namespace Entities;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Category
+ * Class SchoolYear
  * @package Entities
  *
  * @ORM\Entity()
- * @ORM\Table("categories")
+ * @ORM\Table("schoolyears")
  */
-class Category
+class SchoolYear
 {
     /**
      * @ORM\Id

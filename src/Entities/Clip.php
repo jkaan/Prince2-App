@@ -40,9 +40,9 @@ class Clip
     private $clip;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="SchoolYear")
      */
-    private $category;
+    private $schoolYear;
 
     /**
      * @return mixed
