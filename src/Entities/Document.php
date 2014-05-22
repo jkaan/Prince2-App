@@ -39,6 +39,11 @@ class Document
 
     private $document;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     */
+    private $category;
+
 
     /**
      * @param mixed $id

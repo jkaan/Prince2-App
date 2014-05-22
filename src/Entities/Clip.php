@@ -40,6 +40,11 @@ class Clip
     private $clip;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Category")
+     */
+    private $category;
+
+    /**
      * @return mixed
      */
     public function getId()
