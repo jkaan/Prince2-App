@@ -11,6 +11,13 @@ namespace Entities;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class Document
+ * @package Entities
+ *
+ * @ORM\Entity()
+ * @ORM\Table(name="documents")
+ */
 class Document
 {
     /**

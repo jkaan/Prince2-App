@@ -11,6 +11,13 @@ namespace Entities;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+/**
+ * Class Clip
+ * @package Entities
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="clips")
+ */
 class Clip
 {
     /**
