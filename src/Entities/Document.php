@@ -40,9 +40,9 @@ class Document
     private $document;
 
     /**
-     * @ORM\ManyToOne(targetEntity="SchoolYear")
+     * @ORM\ManyToOne(targetEntity="Subject")
      */
-    private $schoolYear;
+    private $subject;
 
 
     /**

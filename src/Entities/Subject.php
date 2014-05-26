@@ -28,6 +28,11 @@ class Subject
     private $id;
 
     /**
+     * @ORM\Column(name="schoolYear", type="integer")
+     */
+	 private $schoolYear;
+	
+    /**
      * @ORM\Column(name="title", type="string")
      */
     private $title;

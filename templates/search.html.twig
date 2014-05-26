@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div id="breadcrumbs">
+		<div class="container">
+			<a href="/">Home</a> // 
+			<a href="#">Search</a>
+		</div>
+	</div>
+	<div id="content">
+		<div class="container">
+			<div class="leerjaar1 onderwerp">
+				<div class="header black"><p>Search results</p></div>
+				<div class="content red onderwerpen">
+					{% set index = 1 %}
+					{% for result in SearchResult %}
+						{% if index == 1 %}
+							<div class="row">
+						{% endif %}	
+							{% if result.schoolYear == 1 %}
+								<a href="/leerjaar/{{result.schoolYear}}/onderwerp/{{result.id}}"><div class="header subject red">{{result.title}}</div></a>
+							{% elseif result.schoolYear == 2 %}
+								<a href="/leerjaar/{{result.schoolYear}}/onderwerp/{{result.id}}"><div class="header subject orange">{{result.title}}</div></a>
+							{% elseif result.schoolYear == 3 %}
+								<a href="/leerjaar/{{result.schoolYear}}/onderwerp/{{result.id}}"><div class="header subject green">{{result.title}}</div></a>						
+							{% else %}
+								<a href="/leerjaar/{{result.schoolYear}}/onderwerp/{{result.id}}"><div class="header subject blue">{{result.title}}</div></a>
+							{% endif %}
+						{% if index == 3 %}
+							</div>	
+							{% set index = 1 %}							
+						{% elseif loop.last %}
+							</div>	
+						{% else %}
+							{% set index = index+1 %} 
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="contact">
+			<hr>
+			<h2>Contact</h2>
+			<a href="">info@hogeschoolzeeland.nl</a>
+			</div>
+		</div>
+	</div>
+{% endblock body %}

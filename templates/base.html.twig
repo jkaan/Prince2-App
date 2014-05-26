@@ -27,7 +27,9 @@
             <a href="/"><img title="terug naar de homepage" width="300" height="83" src="/assets/img/logo.png" alt="Hogeschool Zeeland" style="border-width:0px;"></a>
         </div>
         <div class="search">
-            <input type="text" placeholder="Search..." class="form-control">
+			<form action="/search" id="searchform" method="post">
+				<input type="search" results=5 placeholder="Search..." class="form-control" name="search">
+			</form>
         </div>
     </div>
 </div>

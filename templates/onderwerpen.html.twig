@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+	<div id="breadcrumbs">
+		<div class="container">
+			<a href="/">Home</a> // 
+			<a href="#">Leerjaar 1</a>
+		</div>
+	</div>
+	<div id="content">
+		<div class="container">
+			<div class="leerjaar1 onderwerp">
+				<div class="header red"><p>Leerjaar {{LeerjaarID}}</p></div>
+				<div class="content red onderwerpen">
+					{% set index = 1 %}
+					{% for subject in Subjects %}
+						{% if index == 1 %}
+							<div class="row">
+						{% endif %}	
+							<a href="{{LeerjaarID}}/onderwerp/{{subject.id}}"><div class="header subject">{{subject.title}}</div></a>
+						{% if index == 3 %}
+							</div>	
+							{% set index = 1 %}							
+						{% elseif loop.last %}
+							</div>	
+						{% else %}
+							{% set index = index+1 %} 
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+			<div class="contact">
+			<hr>
+			<h2>Contact</h2>
+			<a href="">info@hogeschoolzeeland.nl</a>
+			</div>
+		</div>
+	</div>
+{% endblock body %}
