@@ -16,7 +16,7 @@ $classLoader->register();
 $dbParams = array(
     'driver'   => 'pdo_mysql',
     'user'     => 'root',
-    'password' => 'vertrigo',
+    'password' => 'root',
     'dbname'   => 'prince2',
 );
 

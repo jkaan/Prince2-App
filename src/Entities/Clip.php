@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 5/10/14
- * Time: 2:49 PM
- */
 
 namespace Entities;
 
@@ -12,15 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Clip
- * @package Entities
+ * Clip
  *
- * @ORM\Entity
+ * @ORM\Entity()
  * @ORM\Table(name="clips")
  */
 class Clip
 {
     /**
+     * @var integer
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
@@ -28,24 +23,47 @@ class Clip
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
 
-    private $clip;
-
     /**
-     * @ORM\ManyToOne(targetEntity="SchoolYear")
+     * @var integer
+     *
+     * @ORM\Column(name="schoolyear", type="integer")
      */
     private $schoolYear;
 
     /**
-     * @return mixed
+     * @var Subject
+     *
+     * @ORM\ManyToOne(targetEntity="Subject", inversedBy="clips")
+     */
+    private $subject;
+
+    private $clip;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->subject = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -71,15 +89,22 @@ class Clip
     }
 
     /**
-     * @param mixed $name
+     * Set name
+     *
+     * @param string $name
+     * @return Clip
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name
+     *
+     * @return string 
      */
     public function getName()
     {
@@ -87,36 +112,64 @@ class Clip
     }
 
     /**
-     * @param mixed $path
+     * Set path
+     *
+     * @param string $path
+     * @return Clip
      */
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get path
+     *
+     * @return string 
      */
     public function getPath()
     {
         return $this->path;
     }
 
-
-    public function upload()
+    /**
+     * Set schoolYear
+     *
+     * @param integer $schoolYear
+     * @return Clip
+     */
+    public function setSchoolYear($schoolYear)
     {
-        if (null === $this->getClip()) {
-            return;
-        }
+        $this->schoolYear = $schoolYear;
 
-        $this->getClip()->move(
-            $this->getUploadRootDir(),
-            $this->getClip()->getClientOriginalName()
-        );
+        return $this;
+    }
 
-        $this->setPath($this->getClip()->getClientOriginalName());
+    /**
+     * Get schoolYear
+     *
+     * @return integer 
+     */
+    public function getSchoolYear()
+    {
+        return $this->schoolYear;
+    }
 
-        $this->setClip(null);
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return Subject
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
     public function getAbsolutePath()
@@ -133,7 +186,7 @@ class Clip
             : $this->getUploadDir().'/'.$this->path;
     }
 
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
@@ -147,6 +200,19 @@ class Clip
         return 'uploads/clips';
     }
 
+    public function upload()
+    {
+        if (null === $this->getClip()) {
+            return;
+        }
 
+        $this->getClip()->move(
+            $this->getUploadRootDir(),
+            $this->getClip()->getClientOriginalName()
+        );
 
-} 
+        $this->setPath($this->getClip()->getClientOriginalName());
+
+        $this->setClip(null);
+    }
+}

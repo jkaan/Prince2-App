@@ -2,7 +2,6 @@
 
 require_once "vendor/autoload.php";
 require_once "config/doctrine-bootstrap.php";
-use Symfony\Component\HttpFoundation\Response;
 
 $app = new Silex\Application();
 
@@ -11,7 +10,7 @@ $app['entityManager'] = $entityManager;
 $app['db'] = $entityManager->getConnection();
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => 'logs/development.log',
+    'monolog.logfile' => 'logs/dev.log',
 ));
 
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
@@ -21,23 +20,20 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 );
 
 $app->get('/', 'Controllers\\PageController::indexAction')->bind('home');
-$app->get('leerjaar/{id1}/onderwerp/{id2}', 'Controllers\\PageController::onderwerpAction')->bind('onderwerp');
+$app->get('leerjaar/{leerjaarId}/onderwerp/{subjectId}', 'Controllers\\PageController::onderwerpAction')->bind('onderwerp');
 $app->get('leerjaar/{id}', 'Controllers\\PageController::leerjaarAction')->bind('leerjaar');
 $app->get('/login', 'Controllers\\PageController::loginAction')->bind('login');
 $app->get('/admin/', 'Controllers\\PageController::adminAction')->bind('admin');
 $app->get('/admin/uploadDocument', 'Controllers\\PageController::uploadDocumentAction')->bind('uploadDocument');
 $app->get('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction')->bind('uploadClip');
-$app->get('/error', 'Controllers\\PageController::errorAction')->bind('uploadClip');
+$app->get('/error', 'Controllers\\PageController::errorAction');
 
-//$app->get('/search', 'Controllers\\PageController::searchAction')->bind('search');
 $app->post('/search', 'Controllers\\PageController::searchAction')->bind('search');
 
+$app->post('/admin/uploadDocument', 'Controllers\\PageController::uploadDocumentAction');
+$app->post('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction');
+
 $app->post('/admin/checkLogin', 'Controllers\\PageController::checkLogin')->bind('checkLogin');
-
-
-//$app->error(function (\Exception $e, $code) use ($app) {
-//     return $app->redirect('/error');
-//});
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\SecurityServiceProvider());
@@ -60,7 +56,7 @@ $app['security.firewalls'] = array(
         ),
         'anonymous' => true,
         'users' => $app->share(function() use ($app) {
-                return new Security\UserProvider($app['db']);
+                return new Security\UserProvider($app['db'], $app);
             })
     ),
 );

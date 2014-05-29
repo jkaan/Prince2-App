@@ -2,33 +2,41 @@
 
 {% block body %}
 
-<div id="breadcrumbs">
-		<div class="container">
-			<a href="/">Home</a> // 
-			<a href="/leerjaar/{{LeerjaarID}}">Leerjaar {{LeerjaarID}}</a> //
-			<a href="#">Onderwerp 1</a>
-		</div>
-	</div>	
-	<div id="content">
-		<div class="container">
-			<div class="leerjaar1 onderwerp">
-				<div class="header {{ LeerjaarColor }}"><p>{{ResultArray.title}}</p></div>
-				<div class="content red">
-					<p>
-						{{ResultArray.message}}
-					</p>
-					<p class="attached_file">
-						{% for attach in Attachments %}
-							<img src="/img/attachment.png"/><a href="{{attach.AttPath}}">{{attach.AttName}}</a><br>
-						{% endfor %}					
-					</p>
-				</div>
-			</div>
-			<div class="contact">
-			<hr>
-			<h2>Contact</h2>
-			<a href="">info@hogeschoolzeeland.nl</a>
-			</div>
-		</div>
-	</div>
+    <div id="breadcrumbs">
+        <div class="container">
+            <a href="/">Home</a> //
+            <a href="/leerjaar/{{LeerjaarID}}">Leerjaar {{LeerjaarID}}</a> //
+            <a href="#">Onderwerp 1</a>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="leerjaar1 onderwerp">
+                <div class="header {{ LeerjaarColor }}"><p>{{ subject.getTitle() }}</p></div>
+                <div class="content red">
+                    <p>
+                    <h3>{{ subject.getMessage() }}</h3>
+                    </p>
+                    <p class="attached_file">
+                    <h5>Documenten</h5>
+                    {% for document in documents %}
+                        <img src="/img/attachment.png"/><a href="{{ document.getPath() }}">{{ document.getName() }}</a><br>
+                    {% endfor %}
+                    </p>
+
+                    <p class="attached_file">
+                    <h5>Clips</h5>
+                    {% for clip in clips %}
+                        <img src="/img/attachment.png" alt=""/><a href="{{ clip.getPath() }}">{{ clip.getName() }}</a><br/>
+                    {% endfor %}
+                    </p>
+                </div>
+            </div>
+            <div class="contact">
+                <hr>
+                <h2>Contact</h2>
+                <a href="">info@hogeschoolzeeland.nl</a>
+            </div>
+        </div>
+    </div>
 {% endblock body %}

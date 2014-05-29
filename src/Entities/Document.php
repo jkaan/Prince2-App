@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 5/10/14
- * Time: 2:49 PM
- */
 
 namespace Entities;
 
@@ -12,15 +6,16 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Document
- * @package Entities
+ * Document
  *
- * @ORM\Entity()
+ * @ORM\Entity
  * @ORM\Table(name="documents")
  */
 class Document
 {
     /**
+     * @var integer
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
@@ -28,33 +23,47 @@ class Document
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $path;
 
-    private $document;
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer", length=1)
+     */
+    private $schoolYear;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Subject")
+     * @var Subject
+     *
+     * @ORM\ManyToOne(targetEntity="Subject", inversedBy="documents")
      */
     private $subject;
 
+    private $document;
 
     /**
-     * @param mixed $id
+     * Constructor
      */
-    public function setId($id)
+    public function __construct()
     {
-        $this->id = $id;
+        $this->subject = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -62,33 +71,22 @@ class Document
     }
 
     /**
-     * Sets the document
+     * Set name
      *
-     * @param UploadedFile $document
-     */
-    public function setDocument(UploadedFile $document = null)
-    {
-        $this->document = $document;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * @param mixed $name
+     * @param string $name
+     * @return Document
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name
+     *
+     * @return string 
      */
     public function getName()
     {
@@ -96,35 +94,64 @@ class Document
     }
 
     /**
-     * @param mixed $path
+     * Set path
+     *
+     * @param string $path
+     * @return Document
      */
     public function setPath($path)
     {
         $this->path = $path;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get path
+     *
+     * @return string 
      */
     public function getPath()
     {
         return $this->path;
     }
 
-    public function upload()
+    /**
+     * Set schoolYear
+     *
+     * @param integer $schoolYear
+     * @return Document
+     */
+    public function setSchoolYear($schoolYear)
     {
-        if (null === $this->getDocument()) {
-            return;
-        }
+        $this->schoolYear = $schoolYear;
 
-        $this->getDocument()->move(
-            $this->getUploadRootDir(),
-            $this->getDocument()->getClientOriginalName()
-        );
+        return $this;
+    }
 
-        $this->setPath($this->getDocument()->getClientOriginalName());
+    /**
+     * Get schoolYear
+     *
+     * @return integer 
+     */
+    public function getSchoolYear()
+    {
+        return $this->schoolYear;
+    }
 
-        $this->setDocument(null);
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
+    }
+
+    /**
+     * Get subject
+     *
+     * @return Subject
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
     public function getAbsolutePath()
@@ -155,6 +182,37 @@ class Document
         return 'uploads/documents';
     }
 
+    /**
+     * Sets the document
+     *
+     * @param UploadedFile $document
+     */
+    public function setDocument(UploadedFile $document = null)
+    {
+        $this->document = $document;
+    }
 
+    /**
+     * @return mixed
+     */
+    public function getDocument()
+    {
+        return $this->document;
+    }
 
-} 
+    public function upload()
+    {
+        if (null === $this->getDocument()) {
+            return;
+        }
+
+        $this->getDocument()->move(
+            $this->getUploadRootDir(),
+            $this->getDocument()->getClientOriginalName()
+        );
+
+        $this->setPath($this->getDocument()->getClientOriginalName());
+
+        $this->setDocument(null);
+    }
+}

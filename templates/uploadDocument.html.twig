@@ -2,7 +2,7 @@
 
 {% block body %}
     <h1>Upload een document hier</h1>
-    <form action="{{ path('uploadDocument') }}" method="POST" role="form">
+    <form action="{{ path('uploadDocument') }}" method="POST" role="form" enctype="multipart/form-data">
         <div class="form-group">
             <label for="documentName">Naam document</label>
             <input class="form-control" id="documentName" name="documentName" type="text"/>

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: joey
- * Date: 5/8/14
- * Time: 4:06 PM
- */
 
 namespace Entities;
 
@@ -13,15 +7,16 @@ use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class User
- * @package entities
+ * User
  *
- * @ORM\Entity()
+ * @ORM\Entity
  * @ORM\Table(name="users")
  */
-class User implements UserInterface {
-
+class User implements UserInterface
+{
     /**
+     * @var integer
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue
@@ -29,26 +24,34 @@ class User implements UserInterface {
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $username;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $email;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string")
      */
     private $salt;
 
-    public function __construct($username, $password, $salt = null)
+    public function __construct($username, $password, $salt)
     {
         $this->username = $username;
         $this->password = $password;
@@ -56,7 +59,9 @@ class User implements UserInterface {
     }
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -64,31 +69,22 @@ class User implements UserInterface {
     }
 
     /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param $username
+     * Set username
+     *
+     * @param string $username
+     * @return User
      */
     public function setUsername($username)
     {
         $this->username = $username;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get username
+     *
+     * @return string 
      */
     public function getUsername()
     {
@@ -96,19 +92,72 @@ class User implements UserInterface {
     }
 
     /**
-     * @param mixed $password
+     * Set email
+     *
+     * @param string $email
+     * @return User
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string 
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     * @return User
      */
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get password
+     *
+     * @return string 
      */
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Get salt
+     *
+     * @return string 
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
     /**
@@ -130,23 +179,6 @@ class User implements UserInterface {
     public function getRoles()
     {
         return array('ROLE_ADMIN');
-    }
-
-    public function setSalt($salt)
-    {
-        $this->salt = $salt;
-    }
-
-    /**
-     * Returns the salt that was originally used to encode the password.
-     *
-     * This can return null if the password was not encoded using a salt.
-     *
-     * @return string|null The salt
-     */
-    public function getSalt()
-    {
-        return $this->salt;
     }
 
     /**
