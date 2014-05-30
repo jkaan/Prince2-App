@@ -7,3 +7,6 @@ $I->see('LEERJAAR 1');
 $I->see('LEERJAAR 2');
 $I->see('LEERJAAR 3');
 $I->see('LEERJAAR 4');
+
+$I->see('CONTACT');
+$I->see('info@hogeschoolzeeland.nl');

@@ -8,7 +8,7 @@
         <li><a href="/">Home</a></li>
         <li class="active">Login</li>
     </ol>
-    <form action="{{ path('checkLogin') }}" method="POST" role="form">
+    <form id="loginForm" action="{{ path('checkLogin') }}" method="POST" role="form">
         <div class="form-group">
             <label for="username">Username:</label>
             <input class="form-control" id="username" type="text" name="_username" value="{{ last_username }}"/>
