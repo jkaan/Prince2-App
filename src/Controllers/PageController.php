@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PageController
 {
-
     public function indexAction(Request $request, Application $app)
     {
         /** @var \Doctrine\ORM\EntityManager $entityManager */
@@ -204,5 +203,33 @@ class PageController
         }
 
         return $app['twig']->render('uploadClip.html.twig');
+    }
+
+    public function downloadDocumentAction(Request $request, Application $app, $fileId)
+    {
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
+
+        $document = $entityManager->getRepository('Entities\Document')->find($fileId);
+
+        if (!$document) {
+            $app->abort(404, 'This document does not exist!');
+        }
+
+        return $app->sendFile('uploads/documents/' . $document->getPath(), 200, array('Content-type' => $document->getMimeType()), 'attachment');
+    }
+
+    public function downloadClipAction(Request $request, Application $app, $fileId)
+    {
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
+
+        $clip = $entityManager->getRepository('Entities\Clip')->find($fileId);
+
+        if (!$clip) {
+            $app->abort(404, 'This clip does not exist!');
+        }
+
+        return $app->sendFile('uploads/clips/' . $clip->getPath(), 200, array('Content-type' => $clip->getMimeType()), 'attachment');
     }
 } 

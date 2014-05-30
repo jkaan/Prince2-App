@@ -53,6 +53,13 @@ class Document
     private $document;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="mimetype", type="string")
+     */
+    private $mimeType;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -63,7 +70,7 @@ class Document
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -86,7 +93,7 @@ class Document
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -109,7 +116,7 @@ class Document
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -132,7 +139,7 @@ class Document
     /**
      * Get schoolYear
      *
-     * @return integer 
+     * @return integer
      */
     public function getSchoolYear()
     {
@@ -212,7 +219,24 @@ class Document
         );
 
         $this->setPath($this->getDocument()->getClientOriginalName());
+        $this->setMimeType($this->getDocument()->getClientMimeType());
 
         $this->setDocument(null);
+    }
+
+    /**
+     * @param string $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
     }
 }

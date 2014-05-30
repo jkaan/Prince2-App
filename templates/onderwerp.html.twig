@@ -18,14 +18,14 @@
                     <p class="attached_file">
                     <h5>Documenten</h5>
                     {% for document in documents %}
-                        <img src="/img/attachment.png"/><a href="{{ document.getPath() }}">{{ document.getName() }}</a><br>
+                        <img src="/img/attachment.png"/><a href="{{ app.url_generator.generate('downloadDocument', {fileId: document.getId() }) }}">{{ document.getName() }}</a><br>
                     {% endfor %}
                     </p>
 
                     <p class="attached_file">
                     <h5>Clips</h5>
                     {% for clip in clips %}
-                        <img src="/img/attachment.png" alt=""/><a href="{{ clip.getPath() }}">{{ clip.getName() }}</a><br/>
+                        <img src="/img/attachment.png" alt=""/><a href="{{ app.url_generator.generate('downloadClip', {fileId: clip.getId() }) }}">{{ clip.getName() }}</a><br/>
                     {% endfor %}
                     </p>
                 </div>

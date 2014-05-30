@@ -9,41 +9,39 @@
         <li><a href="/">Home</a></li>
         <li class="active">Beheer</li>
     </ol>
-    <div class="documents">
-        <div class="redHeader"><p>Uploaden documenten</p></div>
-        <div class="content">
-            <h4>Geuploade documenten</h4>
-            {% if documents|length > 0 %}
-                <ul>
-                    {% for document in documents %}
-                        <li>{{ document.getName() }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                Geen documenten geupload
-            {% endif %}
-            <p>
-                <a class="btn btn-default" href="{{ path('uploadDocument') }}">Upload document</a>
-            </p>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="redHeader"><p>Uploaden documenten <a class="btn btn-default pull-right" href="{{ path('uploadDocument') }}">Upload document</a></p></div>
+            <div class="content">
+                <h4>Geuploade documenten</h4>
+                {% if documents|length > 0 %}
+                    <ul>
+                        {% for document in documents %}
+                            <li>{{ document.getName() }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="small">Klik om te downloaden</p>
+                {% else %}
+                    Geen documenten geupload
+                {% endif %}
+            </div>
         </div>
-    </div>
-    <div class="clips">
-        <div class="greenHeader"><p>Uploaden filmpje</p></div>
-        <div class="content">
-            <h4>Geuploade filmpjes</h4>
-            {% if clips|length > 0 %}
-                <ul>
-                    {% for clip in clips %}
-                        <li>{{ clip.getName() }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                Geen clips geupload
-            {% endif %}
-            <p>
-                <a class="btn btn-default" href="{{ path('uploadClip') }}">Upload filmpje</a>
-            </p>
-        </div>
-    </div>
 
+        <div class="col-md-6">
+            <div class="greenHeader"><p>Uploaden filmpje<a class="btn btn-default pull-right" href="{{ path('uploadClip') }}">Upload filmpje</a></p></div>
+            <div class="content">
+                <h4>Geuploade filmpjes</h4>
+                {% if clips|length > 0 %}
+                    <ul>
+                        {% for clip in clips %}
+                            <li>{{ clip.getName() }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p class="small">Klik om te downloaden</p>
+                {% else %}
+                    Geen clips geupload
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock body %}

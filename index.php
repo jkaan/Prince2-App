@@ -26,6 +26,8 @@ $app->get('/login', 'Controllers\\PageController::loginAction')->bind('login');
 $app->get('/admin/', 'Controllers\\PageController::adminAction')->bind('admin');
 $app->get('/admin/uploadDocument', 'Controllers\\PageController::uploadDocumentAction')->bind('uploadDocument');
 $app->get('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction')->bind('uploadClip');
+$app->get('/download/document/{fileId}', 'Controllers\\PageController::downloadDocumentAction')->bind('downloadDocument');
+$app->get('/download/clip/{fileId}', 'Controllers\\PageController::downloadClipAction')->bind('downloadClip');
 
 $app->post('/search', 'Controllers\\PageController::searchAction')->bind('search');
 
@@ -38,6 +40,7 @@ $app->post('/admin/checkLogin', 'Controllers\\PageController::checkLogin')->bind
 $app->error(function(\Exception $e, $code) use ($app) {
     return $app['twig']->render('error.html.twig', array(
         'errorCode' => $code,
+        'exception' => $e,
     ));
 });
 

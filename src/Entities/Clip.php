@@ -50,6 +50,13 @@ class Clip
      */
     private $subject;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mimetype", type="string")
+     */
+    private $mimeType;
+
     private $clip;
 
     /**
@@ -212,7 +219,24 @@ class Clip
         );
 
         $this->setPath($this->getClip()->getClientOriginalName());
+        $this->setMimeType($this->getClip()->getClientMimeType());
 
         $this->setClip(null);
+    }
+
+    /**
+     * @param string $mimeType
+     */
+    public function setMimeType($mimeType)
+    {
+        $this->mimeType = $mimeType;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMimeType()
+    {
+        return $this->mimeType;
     }
 }
