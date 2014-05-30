@@ -1,17 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-	<div id="breadcrumbs">
-		<div class="container">
-			<a href="/">Home</a> // 
-			<a href="#">Error !?!?!</a>
-		</div>
-	</div>
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Error ?!</li>
+    </ol>
 	<div id="content">
 		<div class="container">
-			<div class="leerjaar1 onderwerp center">
+			<div class="onderwerp center">
+                <h2>Error: {{ errorCode }}</h2>
 				<h2>Daar gaat iets niet goed!?</h2>
+                <p>Mogelijk bestaat deze pagina niet of is deze momenteel niet beschikbaar</p>
 			</div>
 			<div class="contact">
 			<hr>

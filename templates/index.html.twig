@@ -1,66 +1,59 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	<div id="breadcrumbs">
-		<div class="container">
-			<a href="/">Home</a> 
-		</div>
-	</div>
-	<div id="content">
-		<div class="leerjaar1">
-			<div class="header red"><p>Leerjaar 1</p></div>
-			<div class="content red">
-				<p>
-				{% for user in array %}
-					{% if user.id == 1 %}
-					   - <a href="leerjaar/1/onderwerp/{{ user.id }}">{{ user.title }}</a> <br>
-					{% endif %}	
-				{% endfor %}
-				</p>
+    <ol class="breadcrumb">
+        <li class="active">Home</li>
+    </ol>
+    <div id="content">
+        <div class="leerjaar1">
+            <div class="header red"><p>Leerjaar 1</p></div>
+            <div class="content red">
+                <p>
+                    {% for subject in schoolYearOneSubjects %}
+                        - <a href="leerjaar/1/onderwerp/{{ subject.getId() }}">{{ subject.getTitle() }}</a><br>
+                    {% endfor %}
+                </p>
 
-				<p class="more"><a href="leerjaar/1">Meer items...</a></p>
-			</div>
-		</div>
-		<div class="leerjaar2">
-			<div class="header orange"><p>Leerjaar 2</p></div>
-			<div class="content orange">
-				<p>
-					- <a href="#">Onderwerp 1</a> <br>
-					- <a href="#">Onderwerp 2</a> <br>
-					- <a href="#">Onderwerp 3</a> <br>
-					- <a href="#">Onderwerp 4</a> <br>
-				</p>
-				<p class="more"><a href="">Meer items...</a></p>
-			</div>
-		</div>
-		<div class="leerjaar3">
-			<div class="header green"><p>Leerjaar 3</p></div>
-			<div class="content green">
-				<p>
-					- <a href="#">Onderwerp 1</a> <br>
-					- <a href="#">Onderwerp 2</a> <br>
-					- <a href="#">Onderwerp 3</a> <br>
-					- <a href="#">Onderwerp 4</a> <br>
-				</p>
-				<p class="more"><a href="">Meer items...</a></p>
-			</div>
-		</div>
-		<div class="leerjaar4">
-			<div class="header blue"><p>Leerjaar 4</p></div>
-			<div class="content blue">
-				<p>
-					- <a href="#">Onderwerp 1</a> <br>
-					- <a href="#">Onderwerp 2</a> <br>
-					- <a href="#">Onderwerp 3</a> <br>
-					- <a href="#">Onderwerp 4</a> <br>
-				</p>
-				<p class="more"><a href="">Meer items...</a></p>
-			</div>
-		</div>
-	</div>
-	<div class="contact">
-		<hr>
-		<h2>Contact</h2>
-		<a href="">info@hogeschoolzeeland.nl</a>
-	</div>
+                <p class="more"><a href="leerjaar/1">Meer items...</a></p>
+            </div>
+        </div>
+        <div class="leerjaar2">
+            <div class="header orange"><p>Leerjaar 2</p></div>
+            <div class="content orange">
+                <p>
+                    {% for subject in schoolYearTwoSubjects %}
+                        - <a href="leerjaar/2/onderwerp/{{ subject.getId() }}">{{ subject.getTitle() }}</a><br/>
+                    {% endfor %}
+                </p>
+                <p class="more"><a href="leerjaar/2">Meer items...</a></p>
+            </div>
+        </div>
+        <div class="leerjaar3">
+            <div class="header green"><p>Leerjaar 3</p></div>
+            <div class="content green">
+                <p>
+                    {% for subject in schoolYearThreeSubjects %}
+                        - <a href="leerjaar/3/onderwerp/{{ subject.getId() }}">{{ subject.getTitle() }}</a><br/>
+                    {% endfor %}
+                </p>
+                <p class="more"><a href="leerjaar/3">Meer items...</a></p>
+            </div>
+        </div>
+        <div class="leerjaar4">
+            <div class="header blue"><p>Leerjaar 4</p></div>
+            <div class="content blue">
+                <p>
+                    {% for subject in schoolYearFourSubjects %}
+                        - <a href="leerjaar/4/onderwerp/{{ subject.getId() }}">{{ subject.getTitle() }}</a><br/>
+                    {% endfor %}
+                </p>
+                <p class="more"><a href="leerjaar/4">Meer items...</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="contact">
+        <hr>
+        <h2>Contact</h2>
+        <a href="">info@hogeschoolzeeland.nl</a>
+    </div>
 {% endblock body %}

@@ -2,13 +2,11 @@
 
 {% block body %}
 
-    <div id="breadcrumbs">
-        <div class="container">
-            <a href="/">Home</a> //
-            <a href="/leerjaar/{{LeerjaarID}}">Leerjaar {{LeerjaarID}}</a> //
-            <a href="#">Onderwerp 1</a>
-        </div>
-    </div>
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/leerjaar/{{ LeerjaarID }}">Leerjaar {{ LeerjaarID }}</a></li>
+        <li class="active">Onderwerp 1</li>
+    </ol>
     <div id="content">
         <div class="container">
             <div class="leerjaar1 onderwerp">

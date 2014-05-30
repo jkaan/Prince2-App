@@ -4,6 +4,10 @@
     {% if error %}
         {{ error }}
     {% endif %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Login</li>
+    </ol>
     <form action="{{ path('checkLogin') }}" method="POST" role="form">
         <div class="form-group">
             <label for="username">Username:</label>

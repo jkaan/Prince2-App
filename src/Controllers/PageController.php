@@ -14,13 +14,34 @@ use Entities\Subject;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 
-class PageController {
-
+class PageController
+{
 
     public function indexAction(Request $request, Application $app)
     {
-        $test = $app['db']->fetchAll('SELECT id, title FROM subjects LIMIT 0,4');
-        return $app['twig']->render('index.html.twig', array('array' => $test));
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
+        $subjectRepository = $entityManager->getRepository('Entities\Subject');
+
+        $schoolYearOneSubjects = $subjectRepository->findBy(array(
+            'schoolYear' => 1,
+        ));
+        $schoolYearTwoSubjects = $subjectRepository->findBy(array(
+            'schoolYear' => 2,
+        ));
+        $schoolYearThreeSubjects = $subjectRepository->findBy(array(
+            'schoolYear' => 3,
+        ));
+        $schoolYearFourSubjects = $subjectRepository->findBy(array(
+            'schoolYear' => 4,
+        ));
+
+        return $app['twig']->render('index.html.twig', array(
+            'schoolYearOneSubjects' => $schoolYearOneSubjects,
+            'schoolYearTwoSubjects' => $schoolYearTwoSubjects,
+            'schoolYearThreeSubjects' => $schoolYearThreeSubjects,
+            'schoolYearFourSubjects' => $schoolYearFourSubjects,
+        ));
     }
 
     public function loginAction(Request $request, Application $app)
@@ -38,12 +59,19 @@ class PageController {
 
     public function adminAction(Request $request, Application $app)
     {
-        return $app['twig']->render('admin.html.twig');
-    }
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
 
-    public function errorAction(Request $request, Application $app)
-    {
-        return $app['twig']->render('error.html.twig');
+        $documentRepository = $entityManager->getRepository('Entities\Document');
+        $clipRepository = $entityManager->getRepository('Entities\Clip');
+
+        $documents = $documentRepository->findAll();
+        $clips = $clipRepository->findAll();
+
+        return $app['twig']->render('admin.html.twig', array(
+            'documents' => $documents,
+            'clips' => $clips,
+        ));
     }
 
     public function searchAction(Request $request, Application $app)

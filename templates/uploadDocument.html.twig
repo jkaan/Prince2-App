@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin">Beheer</a></li>
+        <li class="active">Document uploaden</li>
+    </ol>
     <h1>Upload een document hier</h1>
     <form action="{{ path('uploadDocument') }}" method="POST" role="form" enctype="multipart/form-data">
         <div class="form-group">

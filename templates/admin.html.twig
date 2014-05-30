@@ -5,10 +5,23 @@
 {% endblock stylesheets %}
 
 {% block body %}
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Beheer</li>
+    </ol>
     <div class="documents">
         <div class="redHeader"><p>Uploaden documenten</p></div>
         <div class="content">
-            <h5>Geuploade documenten</h5>
+            <h4>Geuploade documenten</h4>
+            {% if documents|length > 0 %}
+                <ul>
+                    {% for document in documents %}
+                        <li>{{ document.getName() }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                Geen documenten geupload
+            {% endif %}
             <p>
                 <a class="btn btn-default" href="{{ path('uploadDocument') }}">Upload document</a>
             </p>
@@ -17,7 +30,16 @@
     <div class="clips">
         <div class="greenHeader"><p>Uploaden filmpje</p></div>
         <div class="content">
-            <h5>Geuploade filmpjes</h5>
+            <h4>Geuploade filmpjes</h4>
+            {% if clips|length > 0 %}
+                <ul>
+                    {% for clip in clips %}
+                        <li>{{ clip.getName() }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                Geen clips geupload
+            {% endif %}
             <p>
                 <a class="btn btn-default" href="{{ path('uploadClip') }}">Upload filmpje</a>
             </p>

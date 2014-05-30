@@ -2,15 +2,13 @@
 
 {% block body %}
 
-	<div id="breadcrumbs">
-		<div class="container">
-			<a href="/">Home</a> // 
-			<a href="#">Leerjaar 1</a>
-		</div>
-	</div>
+    <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">Leerjaar {{ LeerjaarID }}</li>
+    </ol>
 	<div id="content">
 		<div class="container">
-			<div class="leerjaar1 onderwerp">
+			<div class="leerjaar{{ LeerjaarID }} onderwerp">
 				<div class="header red"><p>Leerjaar {{LeerjaarID}}</p></div>
 				<div class="content red onderwerpen">
 					{% set index = 1 %}

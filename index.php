@@ -26,7 +26,6 @@ $app->get('/login', 'Controllers\\PageController::loginAction')->bind('login');
 $app->get('/admin/', 'Controllers\\PageController::adminAction')->bind('admin');
 $app->get('/admin/uploadDocument', 'Controllers\\PageController::uploadDocumentAction')->bind('uploadDocument');
 $app->get('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction')->bind('uploadClip');
-$app->get('/error', 'Controllers\\PageController::errorAction');
 
 $app->post('/search', 'Controllers\\PageController::searchAction')->bind('search');
 
@@ -34,6 +33,13 @@ $app->post('/admin/uploadDocument', 'Controllers\\PageController::uploadDocument
 $app->post('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction');
 
 $app->post('/admin/checkLogin', 'Controllers\\PageController::checkLogin')->bind('checkLogin');
+
+// Error handling
+$app->error(function(\Exception $e, $code) use ($app) {
+    return $app['twig']->render('error.html.twig', array(
+        'errorCode' => $code,
+    ));
+});
 
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\SecurityServiceProvider());
