@@ -15,11 +15,26 @@
             <div class="content">
                 <h4>Geuploade documenten</h4>
                 {% if documents|length > 0 %}
-                    <ul>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Verwijderen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for document in documents %}
-                            <li>{{ document.getName() }}</li>
+                            <tr>
+                                <td>
+                                    <a href="{{ app.url_generator.generate('downloadDocument', {fileId: document.getId() }) }}">{{ document.getName() }}</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" href="{{ app.url_generator.generate('deleteDocument', {fileId: document.getId() }) }}">Verwijder</a>
+                                </td>
+                            </tr>
                         {% endfor %}
-                    </ul>
+                        </tbody>
+                    </table>
                     <p class="small">Klik om te downloaden</p>
                 {% else %}
                     Geen documenten geupload
@@ -32,11 +47,26 @@
             <div class="content">
                 <h4>Geuploade filmpjes</h4>
                 {% if clips|length > 0 %}
-                    <ul>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Naam</th>
+                            <th>Verwijderen</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {% for clip in clips %}
-                            <li>{{ clip.getName() }}</li>
+                            <tr>
+                                <td>
+                                    <a href="{{ app.url_generator.generate('downloadClip', {fileId: clip.getId() }) }}">{{ clip.getName() }}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ app.url_generator.generate('deleteClip', {fileId: clip.getId() }) }}">Verwijder</a>
+                                </td>
+                            </tr>
                         {% endfor %}
-                    </ul>
+                        </tbody>
+                    </table>
                     <p class="small">Klik om te downloaden</p>
                 {% else %}
                     Geen clips geupload

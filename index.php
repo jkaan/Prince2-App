@@ -28,6 +28,8 @@ $app->get('/admin/uploadDocument', 'Controllers\\PageController::uploadDocumentA
 $app->get('/admin/uploadClip', 'Controllers\\PageController::uploadClipAction')->bind('uploadClip');
 $app->get('/download/document/{fileId}', 'Controllers\\PageController::downloadDocumentAction')->bind('downloadDocument');
 $app->get('/download/clip/{fileId}', 'Controllers\\PageController::downloadClipAction')->bind('downloadClip');
+$app->get('/admin/delete/document/{fileId}', 'Controllers\\PageController::deleteDocumentAction')->bind('deleteDocument');
+$app->get('/admin/delete/document/{fileId}', 'Controllers\\PageController::deleteClipAction')->bind('deleteClip');
 
 $app->post('/search', 'Controllers\\PageController::searchAction')->bind('search');
 

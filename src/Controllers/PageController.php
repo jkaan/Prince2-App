@@ -145,12 +145,20 @@ class PageController
 
             $databaseDocument->upload();
 
-            // Create category
-            $subject = new Subject();
-            $subject->setTitle($categorie);
-            $subject->setMessage("Categorie: " . $categorie);
+            $subjectRepository = $entityManager->getRepository('Entities\Subject');
+
+            $subject = $subjectRepository->findOneBy(array(
+                'title' => $categorie,
+            ));
+
+            if (!$subject || $subject->getSchoolYear() != $leerjaar) {
+                $subject = new Subject();
+                $subject->setTitle($categorie);
+                $subject->setMessage("Categorie: " . $categorie);
+                $subject->setSchoolYear($leerjaar);
+            }
+
             $subject->addDocument($databaseDocument);
-            $subject->setSchoolYear($leerjaar);
 
             $databaseDocument->setSubject($subject);
 
@@ -183,11 +191,19 @@ class PageController
             $databaseClip->setClip($clip);
             $databaseClip->setSchoolYear($leerjaar);
 
-            // Create category
-            $subject = new Subject();
-            $subject->setTitle($categorie);
-            $subject->setMessage("Categorie: " . $categorie);
-            $subject->setSchoolYear($leerjaar);
+            $subjectRepository = $entityManager->getRepository('Entities\Subject');
+
+            $subject = $subjectRepository->findOneBy(array(
+                'title' => $categorie,
+            ));
+
+            if (!$subject || $subject->getSchoolYear() != $leerjaar) {
+                $subject = new Subject();
+                $subject->setTitle($categorie);
+                $subject->setMessage("Categorie: " . $categorie);
+                $subject->setSchoolYear($leerjaar);
+            }
+
             $subject->addClip($databaseClip);
 
             $databaseClip->setSubject($subject);
@@ -213,7 +229,7 @@ class PageController
         $document = $entityManager->getRepository('Entities\Document')->find($fileId);
 
         if (!$document) {
-            $app->abort(404, 'This document does not exist!');
+            $app->abort(404, 'Dit document bestaat niet');
         }
 
         return $app->sendFile('uploads/documents/' . $document->getPath(), 200, array('Content-type' => $document->getMimeType()), 'attachment');
@@ -227,9 +243,45 @@ class PageController
         $clip = $entityManager->getRepository('Entities\Clip')->find($fileId);
 
         if (!$clip) {
-            $app->abort(404, 'This clip does not exist!');
+            $app->abort(404, 'Deze clip bestaat niet');
         }
 
         return $app->sendFile('uploads/clips/' . $clip->getPath(), 200, array('Content-type' => $clip->getMimeType()), 'attachment');
+    }
+
+    public function deleteDocumentAction(Request $request, Application $app, $fileId)
+    {
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
+
+        $document = $entityManager->getRepository('Entities\Document')->find($fileId);
+
+        if (!$document) {
+            $app->abort(404, 'Dit document bestaat niet');
+        }
+
+        $entityManager->remove($document);
+
+        $entityManager->flush();
+
+        return $app->redirect('/admin');
+    }
+
+    public function deleteClipAction(Request $request, Application $app, $fileId)
+    {
+        /** @var \Doctrine\ORM\EntityManager $entityManager */
+        $entityManager = $app['entityManager'];
+
+        $clip = $entityManager->getRepository('Entities\Clip')->find($fileId);
+
+        if (!$clip) {
+            $app->abort(404, 'Deze clip bestaat niet');
+        }
+
+        $entityManager->remove($clip);
+
+        $entityManager->flush();
+
+        return $app->redirect('/admin');
     }
 } 
